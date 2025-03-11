@@ -30,6 +30,9 @@ spec:
             - name: config-volume
               mountPath: /mcp_bridge/config.json
               subPath: config.json
+            - name: config-volume
+              mountPath: /mcp_bridge/mcp_config.json
+              subPath: mcp_config.json
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       volumes:

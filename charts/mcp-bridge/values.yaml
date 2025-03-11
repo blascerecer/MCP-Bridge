@@ -13,12 +13,14 @@ config:
   inferenceServer:
     baseUrl: ""
     apiKey: ""
-  mcpServers: {}
   network:
     host: "0.0.0.0"
     port: 9090
   logging:
     logLevel: "DEBUG"
+
+mcp_config:
+  mcpServers: {}
 
 # Example of how to add MCP servers
 #   mcpServers:

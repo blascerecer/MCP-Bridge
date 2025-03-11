@@ -72,3 +72,26 @@ class StdioClient(GenericMcpClient):
                     self.session = None
 
         logger.debug(f"exiting session for {self.name}")
+
+    async def stop(self):
+        """Stop the client and clean up resources."""
+        logger.info(f"Stopping StdioClient: {self.name}")
+        
+        try:
+            # If there's an active session, we need to close it
+            if self.session:
+                # This assumes your session has a close method or can be terminated
+                # You might need to adjust based on how McpClientSession works
+                self.session = None
+            
+            # If you have a task running _maintain_session, cancel it
+            if hasattr(self, 'maintain_task') and self.maintain_task:
+                self.maintain_task.cancel()
+                try:
+                    await self.maintain_task
+                except asyncio.CancelledError:
+                    pass
+            
+            logger.info(f"Successfully stopped StdioClient: {self.name}")
+        except Exception as e:
+            logger.error(f"Error stopping StdioClient {self.name}: {str(e)}")
