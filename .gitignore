@@ -165,6 +165,9 @@ cython_debug/
 ## custom
 commands.md
 compose.yml
+.DS_Store
+mcp_config.json
+install.json
 config.json
 
 */.DS_Store
